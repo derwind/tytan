@@ -17,24 +17,6 @@ def replace_function(expression, function, new_function):
             return expression.func(*replaced_args)
 
 
-def highest_order(expanded_expr):
-    max_exp = 0
-    for k in expanded_expr.as_coefficients_dict():
-        if k.is_Number:
-            continue
-        if k.is_Mul:
-            exp = 0
-            for k1 in k.args:
-                if k1.is_Pow:
-                    exp += k1.exp
-                elif k1.is_Symbol:
-                    exp += 1
-            max_exp = max(max_exp, exp)
-        elif k.is_Pow:
-            max_exp = max(max_exp, k.exp)
-    return max_exp
-
-
 class Compile:
     def __init__(self, expr):
         self.expr = expr
